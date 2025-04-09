@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rate Movie</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url('https://source.unsplash.com/1600x900/?cinema,movie');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 5px;
+        }
+        .rating input {
+            display: none;
+        }
+        .rating label {
+            font-size: 2rem;
+            cursor: pointer;
+            color: gray;
+        }
+        .rating input:checked ~ label {
+            color: gold;
+        }
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">🎬 Movie Watchlist</a>
+        </div>
+    </nav>
+
+    <!-- Rating Form -->
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4 text-center">
+            <h2 class="mb-4">⭐ Rate Movie: <span class="text-primary">{{ movie.mname }}</span></h2>
+
+            <form action="/submit_rating/{{ movie.id }}" method="POST">
+                <div class="rating">
+                    <input type="radio" name="rating" id="star5" value="5"><label for="star5">★</label>
+                    <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+                    <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+                    <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+                    <input type="radio" name="rating" id="star1" value="1" required><label for="star1">★</label>
+                </div>
+                
+                <button type="submit" class="btn btn-success mt-3">Submit Rating</button>
+            </form>
+
+            <a href="/" class="btn btn-secondary mt-3">⬅ Back to Watchlist</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
